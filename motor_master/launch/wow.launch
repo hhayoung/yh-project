@@ -1,0 +1,35 @@
+<launch>
+	<node pkg="motor_master" type="motor_interface" name="motor_interface">
+		<param name="right_turn_mode_duration" type="double" value="1.4"/>
+		<param name="rt_and_go_mode_duration" type="double" value="2.7"/>
+		<param name="block_left_turn_mode_duration" type="double" value="2.4"/>
+		<param name="block_lt_and_go_mode_duration" type="double" value="1.8"/>
+		<param name="block_pass_mode_duration" type="double" value="0.5"/>
+		<param name="line_left_turn_mode_duration" type="double" value="1.1"/>
+		<param name="line_lt_and_go_mode_duration" type="double" value="0.0675"/>
+		<param name="line_check_init_mode" type="double" value="0.5"/>
+
+		<param name="basic_motor_pwm" type="int" value="20"/>
+
+		<param name="boundary" type="int" value="5"/>
+
+		<param name="kp" type="double" value="3.75"/>
+		<param name="kd_val" type="double" value="1.35"/>
+	</node>
+	<!-- <node pkg="sonar_interface" type="bus_stop_interface" name="bus_stop_interface"/> -->
+	
+	<arg name="arduino_port" default="/dev/ttyUSB0"/>
+
+	<node pkg="rosserial_python" type="serial_node.py" name="servo_serial_node" 
+		args="$(arg arduino_port)" respawn="true" respawn_delay="4" required="false" output="screen">
+		
+
+	</node>
+
+	<node pkg="camera_opencv" type="camera_opencv_node" name="camera_opencv_node" args="0">
+		<param name="boundary" type="double" value="0.67"/>
+	</node>
+
+	<include file="$(find object_detection_gl_ros)/launch/view_object_detection_gl_ros.launch"></include>
+</launch>
+
