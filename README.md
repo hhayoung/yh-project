@@ -6,10 +6,7 @@
 라이다 센서를 통한 장애물 회피, 카메라를 통한 차선과 정류장 인식, 신호등 판별을 통해 주행하는 자율주행 버스 시스템을 구현하는 것.
 
 ### 개발환경
-ubuntu 18.04
-ros melodic 
-c++, opencv, rviz
-Arduino IDE
+ubuntu 18.04 / ros melodic / c++ / opencv / rviz / Arduino IDE
 
 ### 개발기간
 201228 ~ 210206 (약 2달)
